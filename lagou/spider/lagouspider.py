@@ -43,5 +43,5 @@ class Lagouspider(object):
 
 
 if __name__ == "__main__":
-    spider = Lagouspider(input("输入内容是"),maxpage=2)
+    spider = Lagouspider(input("输入内容是"),maxpage=10)
     spider.first()
