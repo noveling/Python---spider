@@ -1,4 +1,4 @@
-#__author__="wdid"
+#__author__="noveling"
 from selenium import webdriver
 import loadstr
 import time
