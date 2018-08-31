@@ -8,7 +8,7 @@ import csv
 
 class PostinfoPipeline(object):
     def __init__(self):
-        self.csvfile = open("storescore.csv","w")
+        self.csvfile = open("storescore.csv","w", newline='')
         mywriter = csv.writer(self.csvfile)
         mywriter.writerow(["名字","性别","生日","命宫","姓名评分","生辰评分"])
 
@@ -21,24 +21,4 @@ class PostinfoPipeline(object):
     def spider_close(self):
         self.csvfile.close()
 
-import csv
-from scrapy.exceptions import DropItem
 
-class GetnamePipeline(object):
-    def __init__(self):
-        self.csvfile = open("storename.csv",'w')
-        self.name_set = set()
-
-    def process_item(self, item, spider):
-        namejudge = item["ming"]
-        if namejudge in self.name_set:
-            raise DropItem("重复内容"+namejudge)
-        self.name_set.add(namejudge)
-        mywriter = csv.writer(self.csvfile)
-        name = item["ming"]
-        print(name)
-        mywriter.writerow([name,])
-        return item
-
-    def spider_close(self):
-        self.csvfile.close()
