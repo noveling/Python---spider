@@ -24,6 +24,7 @@ class DouyucrawlerSpider(scrapy.Spider):
                 item['nickname'] = each['nickname']
                 item['imagelink'] = each['vertical_src']
                 item['roomid'] = each['room_id']
+                item['roomname'] = each['room_name']
                 yield item
         else:
             self.flag = 0

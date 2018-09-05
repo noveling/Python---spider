@@ -16,3 +16,5 @@ class DouyuItem(scrapy.Item):
     nickname = scrapy.Field()
 
     imagelink = scrapy.Field()
+
+    roomname = scrapy.Field()
