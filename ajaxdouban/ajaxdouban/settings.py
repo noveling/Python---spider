@@ -20,6 +20,9 @@ USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 
 DOWNLOAD_DELAY = 0.5
 
+#爬虫定时关闭
+CLOSESPIDER_TIMEOUT = 82800
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'ajaxdouban (+http://www.yourdomain.com)'
 
