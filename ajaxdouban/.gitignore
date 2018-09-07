@@ -1,0 +1,11 @@
+.idea
+package-lock.json
+dist_c
+node_modules
+code
+core
+.lock
+user.dat
+login
+elect_builder_output
+*.pyc
