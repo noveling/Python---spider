@@ -8,19 +8,19 @@ import json
 import codecs
 
 # class SimplespiderPipeline(object):
-#
-#     def __init__(self):
-#         self.tf = open("result.json",'w')
-#
-#     def process_item(self, item, spider):
-#         print(item["name"])
-#         print(item["link"])
-#         json.dump(item, self.tf, ensure_ascii=False)
-#         return item
-#
-#     def spider_closed(self, spider):
-#         self.tf.close()
-#
+
+    # def __init__(self):
+    #     self.tf = open("result.json",'w',encoding="utf-8")
+    #
+    # def process_item(self, item, spider):
+    #     print(item["name"])
+    #     print(item["link"])
+    #     json.dump(dict(item),self.tf,ensure_ascii=False)
+    #     return item
+    #
+    # def spider_closed(self, spider):
+    #     self.tf.close()
+
 class SimplespiderPipeline(object):
     # def process_item(self, item, spider):
     #     return item
