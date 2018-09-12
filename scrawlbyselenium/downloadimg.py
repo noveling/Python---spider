@@ -5,7 +5,7 @@ import os
 # path为要保存图片的文件夹
 def downloadByHttp(url,path="./img/"):
     os.chdir(".")
-    if not os.path.exists("./img") and path="./img/":
+    if (not os.path.exists("./img") and path=="./img/"):
         os.mkdir("./img")
     # 截取文件名，避免文件名过长只截取最后20位
     fileName = url.split("/")[-1:][0][-20:]
