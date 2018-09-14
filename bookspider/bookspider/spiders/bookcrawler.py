@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#__author__ = "noveling"
 import scrapy
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
