@@ -2,6 +2,9 @@
 from selenium import webdriver
 import loadstr
 import time
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
 url = "https://www.lagou.com/"
 
@@ -18,7 +21,7 @@ class Lagouspider(object):
         self.parse()
 
     def parse(self):
-        all_job = self.wb.find_element_by_xpath("/html/body/div[2]/div[2]/div[1]/div[3]/ul")
+        all_job = WebDriverWait(self.wb,3).until(EC.presence_of_element_located((By.XPATH,"//div[@id='s_position_list']/ul[1]")))
         for job in all_job.find_elements_by_xpath("//li"):
             if job.get_attribute("data-positionname"):
                 position=[job.get_attribute("data-company"),job.get_attribute("data-positionname"),job.get_attribute("data-salary")]
