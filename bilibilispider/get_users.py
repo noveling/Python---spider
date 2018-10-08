@@ -4,6 +4,7 @@ from multiprocessing.dummy import Pool as ThreadPool
 import json
 import random
 from create_ippool import get_html
+import os
 
 ip_pool = [{"http":"http://"+i} for i in get_html(20)]
 print(ip_pool)
@@ -28,7 +29,7 @@ def current_milli_time():
 urls = []
 
 # Please change the range data by yourself.
-for m in range(5214, 5215):
+for m in range(1000, 8000):
 
     for i in range(m * 100, (m + 1) * 100):
         url = 'https://space.bilibili.com/' + str(i)
@@ -36,6 +37,7 @@ for m in range(5214, 5215):
 
 
 def getsource(url):
+    rel_info={}
     proxy = random.choice(ip_pool)
     print("代理:",proxy)
     payload = {
@@ -48,7 +50,8 @@ def getsource(url):
             .post('http://space.bilibili.com/ajax/member/GetInfo',
                   headers=head,
                   data=payload,proxies=proxy).text
-        print(json.loads(jscontent, encoding="utf-8"))
+        rel_info = json.loads(jscontent, encoding="utf-8")
+        print(rel_info)
     except:
         try:
             print("更换代理ip")
@@ -59,7 +62,8 @@ def getsource(url):
                 .post('http://space.bilibili.com/ajax/member/GetInfo',
                       headers=head,
                       data=payload,proxies=proxy).text
-            print(json.loads(jscontent, encoding="utf-8"))
+            rel_info = json.loads(jscontent, encoding="utf-8")
+            print(rel_info)
         except:
             print("不用代理ip")
             proxy = random.choice(ip_pool)
@@ -69,12 +73,20 @@ def getsource(url):
                 .post('http://space.bilibili.com/ajax/member/GetInfo',
                       headers=head,
                       data=payload).text
-            print(json.loads(jscontent, encoding="utf-8"))
+            rel_info = json.loads(jscontent, encoding="utf-8")
+            print(rel_info)
+    finally:
+        if rel_info["data"] != '服务器遇到了一些问题' and rel_info:
+            with open("./bilibili.txt","a") as fp:
+                    json.dump(rel_info,fp,ensure_ascii=False)
+                    fp.write("\n")
 
 
 
 if __name__ == "__main__":
-    pool = ThreadPool(5)
+    if os.path.exists("./bilibili.txt"):
+        os.remove("./bilibili.txt")
+    pool = ThreadPool(10)
     try:
         results = pool.map(getsource, urls)
     except Exception as e:
